@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    # Bind-mount for fast local development (read-only so container can't accidentally overwrite source)
+    volumes:
+      - ./src:/app/src:ro
+    environment:
+      - ENV=development
+
+  # Example Postgres service for when you migrate to a real database
+  # db:
+  #   image: postgres:15
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: app_db
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+
+#volumes:
+#  pgdata:
+#    driver: local
